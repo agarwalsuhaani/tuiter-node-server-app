@@ -1,4 +1,5 @@
-import * as tuitsDao from '../../tuits/tuits-dao.js'
+import * as tuitsDao from './tuits-dao.js'
+
 // import posts from "./tuits.js";
 // let tuits = posts;
 
@@ -33,6 +34,7 @@ const deleteTuit = async (req, res) => {
 const findTuits = async (req, res) => {
     const tuits = await tuitsDao.findTuits()
     res.json(tuits);
+}
 
 export default (app) => {
     app.post('/api/tuits', createTuit);

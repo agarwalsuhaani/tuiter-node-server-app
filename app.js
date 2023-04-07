@@ -1,24 +1,20 @@
 import express from 'express';
-import HelloController
-    from "./controllers/hello-controller.js"
-import UserController
-    from "./controllers/users/users-controller.js"
-import TuitsController
-    from "./controllers/tuits/tuit-controller.js";
-import cors from 'cors'
+import cors from 'cors';
+import TuitsController from "./controllers/tuits/tuit-controller.js";
 import mongoose from "mongoose";
 
-mongoose.connect('mongodb://127.0.0.1:27017/tuiter);
+const CONNECTION_STRING = process.env.DB_CONNECTION_STRING
+// const CONNECTION_STRING = 'mongodb+srv://agarwalsuhaani:burlmouse77@cluster0.wj64frr.mongodb.net/tuiter?retryWrites=true&w=majority';
+    // || 'mongodb://127.0.0.1:27017/tuiter
+mongoose.connect(CONNECTION_STRING);
+
 
 
 const app = express()
-app.use(express.json());
 app.use(cors())
-HelloController(app)
-UserController(app)
+app.use(express.json());
+
 TuitsController(app);
-
-
 
 
 app.listen(process.env.PORT ||4000)
